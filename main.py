@@ -1,3 +1,3 @@
 from musiclib import Note
 
-print(Note(input()).alt())
+print(Note(input()).shift(-1).note)

@@ -19,8 +19,16 @@ def clear():
 #         return floop(n-max, f)
 #     else:
 #         return n
+def nfindex(ind, arr):
+    if len(arr) == 0: return 0
+    maxi = len(arr)-1
+    
+    if(ind < 0):
+        return nfindex(ind+maxi+1, arr)
+    elif(ind > 0):
+        return findex(ind, arr)
 # take a number as input, make sure it fits inside the index of arr given
-def findex(ind, arr, ignore_negatives=False, cap=False):
+def findex(ind, arr, ignore_negatives=False, cap=False, use_nfindex=False):
     if(len(arr) == 0): return 0
     maxi = len(arr)-1
     if ind > maxi:
@@ -33,11 +41,14 @@ def findex(ind, arr, ignore_negatives=False, cap=False):
         # ignore negatives: just return 0
         if(ignore_negatives == True):
             return 0
+        elif(use_nfindex == True):
+            return nfindex(ind, arr)
         else:
             return findex(abs(ind), arr)
     else:
         return ind
-    
+
+
 # safe indexof, find obj in arr
 def indexOf(obj, arr):
     if obj in arr:

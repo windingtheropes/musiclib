@@ -1,4 +1,4 @@
-from helpers import findex, flip
+from helpers import nfindex, findex, flip
 scale = [
     ["a"],
     ["a#", "bb"],
@@ -29,6 +29,6 @@ class Note:
     # alternate identity
     def alt(self):
         return self.identity[findex(flip(self.identity.index(self.note)), self.identity)]
-    # up by x semitones
-    def up(self, x=1):
-        return Note(scale[findex(scale.index(self.identity)+x, scale)][0])
+    # up/down by x semitones
+    def shift(self, x=1):
+        return Note(scale[findex(scale.index(self.identity)+x, scale, use_nfindex=True)][0])
