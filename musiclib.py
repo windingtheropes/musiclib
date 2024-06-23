@@ -1,4 +1,4 @@
-from helpers import findex
+from helpers import findex, flip
 scale = [
     ["a"],
     ["a#", "bb"],
@@ -26,8 +26,9 @@ class Note:
                 self.identity = note_identity
         if not self.note:
             raise Exception("Not valid note")
+    # alternate identity
+    def alt(self):
+        return self.identity[findex(flip(self.identity.index(self.note)), self.identity)]
     # up by x semitones
     def up(self, x=1):
         return Note(scale[findex(scale.index(self.identity)+x, scale)][0])
-    
-print(Note(input()).up().note)
